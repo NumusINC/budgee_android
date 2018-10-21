@@ -18,13 +18,13 @@ public class Dashboard extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    mTextMessage.setText(R.string.title_expenses);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    mTextMessage.setText(R.string.title_summary);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    mTextMessage.setText(R.string.title_profile);
                     return true;
             }
             return false;
