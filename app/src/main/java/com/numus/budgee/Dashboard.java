@@ -3,12 +3,9 @@ package com.numus.budgee;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -41,30 +38,29 @@ public class Dashboard extends AppCompatActivity {
             SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
             switch (item.getItemId()) {
                 case R.id.navigation_expenses:
-                    //mTextMessage.setText(R.string.title_expenses);
-
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(0);
 
                     return true;
                 case R.id.navigation_summary:
-                    //mTextMessage.setText(R.string.title_summary);
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(1);
 
 
                     return true;
                 case R.id.navigation_profile:
-                    //mTextMessage.setText(R.string.title_profile);
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(2);
 
                     return true;
                 case R.id.navigation_settings:
-                    //mTextMessage.setText(R.string.title_settings);
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(3);
 
+                    /*SettingsFragment fragmentD = new SettingsFragment();
+                    FragmentTransaction fragTransD = getSupportFragmentManager().beginTransaction();
+                    fragTransD.replace(R.id.frame,fragmentD,"SettingsFragment");
+                    fragTransD.commit();*/
                     return true;
             }
             return false;
