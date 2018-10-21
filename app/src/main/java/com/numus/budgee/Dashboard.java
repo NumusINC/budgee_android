@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 public class Dashboard extends AppCompatActivity {
 
     //TextView mTextMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +24,12 @@ public class Dashboard extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        ExpensesFragment fragmentA = new ExpensesFragment();
-        FragmentTransaction fragTransA = getSupportFragmentManager().beginTransaction();
-        fragTransA.replace(R.id.frame,fragmentA,"ExpensesFragment");
-        fragTransA.commit();
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(4);
+        viewPager.setAdapter(swipeAdapter);
+        viewPager.setCurrentItem(0);
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -33,34 +37,34 @@ public class Dashboard extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+            SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
             switch (item.getItemId()) {
                 case R.id.navigation_expenses:
                     //mTextMessage.setText(R.string.title_expenses);
-                    ExpensesFragment fragmentA = new ExpensesFragment();
-                    FragmentTransaction fragTransA = getSupportFragmentManager().beginTransaction();
-                    fragTransA.replace(R.id.frame,fragmentA,"ExpensesFragment");
-                    fragTransA.commit();
+
+                    viewPager.setAdapter(swipeAdapter);
+                    viewPager.setCurrentItem(0);
+
                     return true;
                 case R.id.navigation_summary:
                     //mTextMessage.setText(R.string.title_summary);
-                    SummaryFragment fragmentB = new SummaryFragment();
-                    FragmentTransaction fragTransB = getSupportFragmentManager().beginTransaction();
-                    fragTransB.replace(R.id.frame,fragmentB,"SummaryFragment");
-                    fragTransB.commit();
+                    viewPager.setAdapter(swipeAdapter);
+                    viewPager.setCurrentItem(1);
+
+
                     return true;
                 case R.id.navigation_profile:
                     //mTextMessage.setText(R.string.title_profile);
-                    ProfileFragment fragmentC = new ProfileFragment();
-                    FragmentTransaction fragTransC = getSupportFragmentManager().beginTransaction();
-                    fragTransC.replace(R.id.frame,fragmentC,"ProfileFragment");
-                    fragTransC.commit();
+                    viewPager.setAdapter(swipeAdapter);
+                    viewPager.setCurrentItem(2);
+
                     return true;
                 case R.id.navigation_settings:
                     //mTextMessage.setText(R.string.title_settings);
-                    SettingsFragment fragmentD = new SettingsFragment();
-                    FragmentTransaction fragTransD = getSupportFragmentManager().beginTransaction();
-                    fragTransD.replace(R.id.frame,fragmentD,"SettingsFragment");
-                    fragTransD.commit();
+                    viewPager.setAdapter(swipeAdapter);
+                    viewPager.setCurrentItem(3);
+
                     return true;
             }
             return false;
