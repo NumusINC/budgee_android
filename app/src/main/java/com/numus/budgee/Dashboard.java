@@ -7,6 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+
+import java.util.ArrayList;
+
 public class Dashboard extends AppCompatActivity {
 
     //TextView mTextMessage;
@@ -26,7 +33,6 @@ public class Dashboard extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(swipeAdapter);
         viewPager.setCurrentItem(0);
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
