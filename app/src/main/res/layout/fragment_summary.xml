@@ -68,21 +68,21 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/budget1"
+                    android:text="Budget 1"
                     android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/budget2"
+                    android:text="BBufget 2"
                     android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/budget3"
+                    android:text="Budget 3"
                     android:textAlignment="center" />
             </TableRow>
 

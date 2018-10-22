@@ -3,9 +3,12 @@ package com.numus.budgee;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -33,6 +36,10 @@ public class Dashboard extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(swipeAdapter);
         viewPager.setCurrentItem(0);
+    }
+
+    public void cv_pressed(View view){
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
