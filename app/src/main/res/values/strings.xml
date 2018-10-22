@@ -4,12 +4,12 @@
     <string name="title_summary">Summary</string>
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
-    <string name="user_name">Smash Mouth</string>
+    <string name="user_name">Name</string>
 
-    <!-- Proile section -->
+    <!-- Profile section -->
     <string name="profile1">My Categories</string>
-    <string name="profile2">My budgets</string>
-    <string name="profile3"></string>
+    <string name="profile2">Placeholder XML</string>
+    <string name="profile3">Placeholder XML</string>
     <string name="profile4">Placeholder XML</string>
     <string name="profile5">Placeholder XML</string>
     <string name="profile6">Placeholder XML</string>
@@ -17,8 +17,18 @@
     <!-- Summary section -->
     <string name="budget1">Food</string>
     <string name="budget2">Transport</string>
-    <string name="budget3">School</string>
+    <string name="budget3">Social</string>
+
+    <!-- Notification section -->
+    <string name="not_tile">Notifications</string>
+    <string name="not_desc">Enable or disable alarms</string>
+    <string name="usr_title">My Account</string>
+    <string name="usr_desc">Manage your profile details</string>
+
+    <!-- Expenses section -->
+    <string name="exp_title">My Expenses</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
