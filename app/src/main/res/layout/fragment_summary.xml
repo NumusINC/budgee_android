@@ -22,14 +22,24 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next income placeholder"
+            android:fontFamily="@font/montserrat"
+            android:text="Next income is in"
             android:textAlignment="center" />
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="250dp"
-            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:capitalize="characters"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="27 days"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.ExpandedMenu.Item"
+            android:textColor="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="36sp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -40,23 +50,47 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-                <ProgressBar
-                    android:id="@+id/progressBar3"
-                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Inverse"
+                <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="120dp"
-                    android:layout_height="120dp" />
+                    android:layout_height="wrap_content"
+                    android:capitalize="characters"
+                    android:fontFamily="@font/montserrat"
+                    android:text="$15K"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.ExpandedMenu.Item"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="24sp" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar4"
-                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Inverse"
+                <TextView
+                    android:id="@+id/textView10"
                     android:layout_width="120dp"
-                    android:layout_height="120dp" />
+                    android:layout_height="wrap_content"
+                    android:capitalize="characters"
+                    android:fontFamily="@font/montserrat"
+                    android:text="$2k"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.ExpandedMenu.Item"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="24sp" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar5"
-                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Inverse"
+                <TextView
+                    android:id="@+id/textView11"
                     android:layout_width="120dp"
-                    android:layout_height="120dp" />
+                    android:layout_height="wrap_content"
+                    android:capitalize="characters"
+                    android:fontFamily="@font/montserrat"
+                    android:text="$3.4K"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.ExpandedMenu.Item"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="24sp" />
             </TableRow>
 
             <TableRow
@@ -68,21 +102,24 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budget 1"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/budget1"
                     android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BBufget 2"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/budget2"
                     android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budget 3"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/budget3"
                     android:textAlignment="center" />
             </TableRow>
 
