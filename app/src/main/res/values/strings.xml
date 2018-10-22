@@ -15,9 +15,9 @@
     <string name="profile6">Placeholder XML</string>
 
     <!-- Summary section -->
-    <string name="budget1">Placeholder XML</string>
-    <string name="budget2">Placeholder XML</string>
-    <string name="budget3">Placeholder XML</string>
+    <string name="budget1">Food</string>
+    <string name="budget2">Transport</string>
+    <string name="budget3">School</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
