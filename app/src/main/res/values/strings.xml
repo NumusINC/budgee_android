@@ -14,6 +14,11 @@
     <string name="profile5">Placeholder XML</string>
     <string name="profile6">Placeholder XML</string>
 
+    <!-- Summary section -->
+    <string name="budget1">Food</string>
+    <string name="budget2">Transport</string>
+    <string name="budget3">Social</string>
+
     <!-- Notification section -->
     <string name="not_tile">Notifications</string>
     <string name="not_desc">Enable or disable alarms</string>
