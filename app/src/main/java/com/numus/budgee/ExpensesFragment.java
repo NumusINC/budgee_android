@@ -50,7 +50,6 @@ public class ExpensesFragment extends Fragment{
                 awesomeButtonClicked();
             }
         });
-
         return view;
     }
 
