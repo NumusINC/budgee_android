@@ -97,14 +97,24 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
         if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
             firebaseAuthWithGoogle(acct);
-            Log.i(TAG, "Memoria de percistencia: "+ userStorage.getString("uid","empty data"));
 
             Token token = new Token();
             Log.i(TAG,"Token value: " + token.generate());
             Date date = new Date();
-            Wallet wallet = new Wallet(2000.00,100, date.getTime(), "wallet1",token.generate(), context);
 
             Intent intent = new Intent(this, Dashboard.class);
+
+            Wallet wallet = new Wallet(2000.00,100, date.getTime(), "wallet1",token.generate(), 2000.00);
+            //wallet.setContext(context);
+            String uid = mAuth.getCurrentUser().getUid();
+            Log.i(TAG,"Users/"+uid+"/wallet/"+wallet.getToken());
+            db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
+
+            Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
+            expense.setContext(context);
+            expense.updateDataBase();
+            //wallet.deleteWallet();
+
             startActivity(intent);
         }
     }
@@ -124,7 +134,6 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
                             FirebaseUser user = mAuth.getCurrentUser();
                             User dataUser = new User(user.getDisplayName(), user.getEmail());
                             db.child("Users").child(user.getUid() + "/info").setValue(dataUser);
-
                             //save data in storage file and commit
                             editor.putString("uid",user.getUid());
                             editor.commit();

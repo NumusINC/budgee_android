@@ -22,25 +22,43 @@ public class Wallet {
     SharedPreferences userStorage;
     SharedPreferences.Editor editor;
 
+    public Wallet(){
 
-    public Wallet(double budget, double target, long date, String name, String token, Context context) {
+    }
+
+    public Wallet(double budget, double target, long date, String name, String token, double balance) {
         this.budget = budget;
         this.target = target;
         this.date = date;
         this.name = name;
         this.token = token;
-        this.context = context;
-        this.balance = 0;
+        this.balance = balance;
 
-        userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
-        String uid = userStorage.getString("uid","empty data");
 
-        db = FirebaseDatabase.getInstance().getReference();
+        //String uid = userStorage.getString("uid","empty data");
+
+        /*db = FirebaseDatabase.getInstance().getReference();
         db.child("Users").child(uid+"/wallet/"+token).child("budget").setValue(budget);
         db.child("Users").child(uid+"/wallet/"+token).child("target").setValue(target);
         db.child("Users").child(uid+"/wallet/"+token).child("name").setValue(name);
-        db.child("Users").child(uid+"/wallet/"+token).child("date").setValue(date);
+        db.child("Users").child(uid+"/wallet/"+token).child("date").setValue(date);*/
 
+    }
+
+    public void setContext(Context context){
+        this.context = context;
+        // set values in phone memory
+        userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
+        editor = userStorage.edit();
+        editor.putString("currentWallet",this.token);
+        editor.commit();
+    }
+
+    public void deleteWallet(){
+        userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
+        String uid = userStorage.getString("uid","empty data");
+        db = FirebaseDatabase.getInstance().getReference();
+        db.child("Users").child(uid+"/wallet/"+this.token).setValue(null);
     }
 
     public double getBudget() {
