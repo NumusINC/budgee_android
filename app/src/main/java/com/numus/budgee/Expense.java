@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.gms.common.stats.WakeLockEvent;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,7 @@ public class Expense {
     public boolean isIncome;
     public String walletKey;
     public Context context;
+    private final static String TAG = "Testing";
 
     //Instance Database
     private DatabaseReference db;
@@ -43,23 +45,15 @@ public class Expense {
         this.token = token;
         this.isIncome = isIncome;
 
-        //db.child("Users").child(uid+"/expense/"+this.token).child("name").setValue(this.name);
-        //db.child("Users").child(uid+"/expense/"+this.token).child("walletToken").setValue(currentWallet);
-
-        // Users/Txg7b082nkRoFk6p9KgrpxfJzsG3/wallet/HqQAykbUgF0GN9WGDZGOnbRVs0oZsdFGF
-        // Users/Txg7b082nkRoFk6p9KgrpxfJzsG3/wallet/HqQAykbUgF0GN9WGDZGOnbRVs0oZsdFGF
-
     }
 
     public void updateDataBase(){
 
         userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
         String uid = userStorage.getString("uid","empty data");
-        String currentWallet = userStorage.getString("currentWallet","null wallet");
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/"+uid+"/wallet/NOvI7oTSuLH8bfk6kdwqJgG53NIcvzCE");
+        String currentWallet = userStorage.getString("currentWallet","no existe");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/"+uid+"/wallet/"+currentWallet);
         //Log.i("Testing","REF: "+ref.toString());
-
         ref.runTransaction(new Transaction.Handler() {
             @NonNull @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -73,9 +67,17 @@ public class Expense {
                 if (ex == null) {
                     return Transaction.success(mutableData);
                 }
-                ex.budget -= value;
-                mutableData.setValue(ex);
-                return Transaction.success(mutableData);
+
+                if (isIncome){
+                    ex.budget += value;
+                    mutableData.setValue(ex);
+                    return Transaction.success(mutableData);
+                }else {
+                    ex.budget -= value;
+                    mutableData.setValue(ex);
+                    return Transaction.success(mutableData);
+                }
+
 
 
             }
@@ -85,6 +87,14 @@ public class Expense {
             }
         });
 
+    }
+
+    public void deleteExpense(){
+        //userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
+        //String uid = userStorage.getString("uid","empty data");
+        db = FirebaseDatabase.getInstance().getReference();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.child("Users").child(uid+"/expense/"+this.token).setValue(null);
     }
 
     public void setContext(Context context) {
