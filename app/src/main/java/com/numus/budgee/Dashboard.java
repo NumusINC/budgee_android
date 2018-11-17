@@ -3,6 +3,7 @@ package com.numus.budgee;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +28,16 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        FloatingActionButton myFab = findViewById(R.id.floatingActionButton);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("***********************");
+            }
+        });
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
@@ -38,9 +46,6 @@ public class Dashboard extends AppCompatActivity {
         viewPager.setCurrentItem(0);
     }
 
-    public void cv_pressed(View view){
-
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,10 +75,6 @@ public class Dashboard extends AppCompatActivity {
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(3);
 
-                    /*SettingsFragment fragmentD = new SettingsFragment();
-                    FragmentTransaction fragTransD = getSupportFragmentManager().beginTransaction();
-                    fragTransD.replace(R.id.frame,fragmentD,"SettingsFragment");
-                    fragTransD.commit();*/
                     return true;
             }
             return false;
