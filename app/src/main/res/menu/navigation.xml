@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_expenses"
@@ -12,12 +13,18 @@
         android:title="@string/title_summary" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@mipmap/baseline_account_circle_black_24"
-        android:title="@string/title_profile" />
+        android:id="@+id/myinvisible"
+        android:checkable="false"
+        android:enabled="false"
+        android:icon="@android:color/transparent"
+        android:title="                                         " />
     <item
         android:id="@+id/navigation_settings"
         android:icon="@mipmap/baseline_settings_black_24"
         android:title="@string/title_settings" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@mipmap/baseline_account_circle_black_24"
+        android:title="@string/title_profile" />
 
 </menu>
