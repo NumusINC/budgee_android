@@ -49,6 +49,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if(transaction.getQuantity()>0){
             holder.tv_qty.setTextColor(Color.parseColor("#79d388"));
             holder.tv_qty.setText("+$" + Double.toString(transaction.getQuantity()));
+
         }else{
             holder.tv_qty.setTextColor(Color.parseColor("#e05a5a"));
             holder.tv_qty.setText("-$" + Double.toString(Math.abs(transaction.getQuantity())));
