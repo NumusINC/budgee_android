@@ -31,6 +31,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static com.numus.budgee.R.string.default_web_client_id;
@@ -97,24 +98,7 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
         if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
             firebaseAuthWithGoogle(acct);
-
-            Token token = new Token();
-            Log.i(TAG,"Token value: " + token.generate());
-            Date date = new Date();
-
             Intent intent = new Intent(this, Dashboard.class);
-
-            Wallet wallet = new Wallet(2000.00,100, date.getTime(), "wallet1",token.generate(), 2000.00);
-            //wallet.setContext(context);
-            String uid = mAuth.getCurrentUser().getUid();
-            //db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
-
-            Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
-            //expense.setContext(context);
-            db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
-            //expense.updateDataBase();
-            expense.deleteExpense();
-            //wallet.deleteWallet();
             startActivity(intent);
         }
     }
@@ -134,9 +118,32 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
                             FirebaseUser user = mAuth.getCurrentUser();
                             User dataUser = new User(user.getDisplayName(), user.getEmail());
                             db.child("Users").child(user.getUid() + "/info").setValue(dataUser);
+
                             //save data in storage file and commit
                             editor.putString("uid",user.getUid());
                             editor.commit();
+
+                            // Generate a Token
+                            Token token = new Token();
+                            Log.i(TAG,"Token value: " + token.generate());
+
+                            Date date = new Date();
+                            // Calendar get Date element
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE,7);
+
+                            Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate());
+                            wallet.setContext(context);
+                            String uid = mAuth.getCurrentUser().getUid();
+                            db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
+
+                            Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
+                            //expense.setContext(context);
+                            db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
+                            //expense.updateDataBase();
+                            expense.deleteExpense();
+                            //wallet.deleteWallet();
+
 
                         } else {
                             // If sign in fails, display a message to the user.

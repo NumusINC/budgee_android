@@ -12,7 +12,8 @@ public class Wallet {
 
     public double budget;
     public double target;
-    public long date;
+    public long startDate;
+    public long endDate;
     public String name;
     public String token;
     public double balance;
@@ -26,16 +27,15 @@ public class Wallet {
 
     }
 
-    public Wallet(double budget, double target, long date, String name, String token, double balance) {
+    public Wallet(double budget, double target, long startDate, long endDate,String name, String token) {
         this.budget = budget;
         this.target = target;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.name = name;
         this.token = token;
-        this.balance = balance;
-
-
-        //String uid = userStorage.getString("uid","empty data");
+        int days = (int) ((endDate - startDate) / (1000*60*60*24));
+        this.balance = budget/days;
 
         /*db = FirebaseDatabase.getInstance().getReference();
         db.child("Users").child(uid+"/wallet/"+token).child("budget").setValue(budget);
@@ -70,7 +70,7 @@ public class Wallet {
     }
 
     public long getDate() {
-        return date;
+        return this.endDate;
     }
 
     public String getName() {
