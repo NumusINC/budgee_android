@@ -107,18 +107,24 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
 
             Intent intent = new Intent(this, Dashboard.class);
 
+            /* QUERY Example
             Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate());
-            //wallet.setContext(context);
+            wallet.setContext(context);
             String uid = mAuth.getCurrentUser().getUid();
             db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
 
+            QUERY add expense
             Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
-            //expense.setContext(context);
+            expense.setContext(context);
             db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
-            //expense.updateDataBase();
+            expense.updateDataBase();
             expense.deleteExpense();
             //wallet.deleteWallet();
 
+            DELETE WALLET OR EXPENSE
+            wallet.deleteWallet();
+            expense.deleteExpense();
+            */
             startActivity(intent);
         }
     }
