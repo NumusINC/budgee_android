@@ -27,15 +27,8 @@ public class Expense {
     public String token;
     public boolean isIncome;
     public String walletKey;
-    public Context context;
-    private final static String TAG = "Testing";
 
-    //Instance Database
-    private DatabaseReference db;
-
-    //Instance sotorage user
-    SharedPreferences userStorage;
-    SharedPreferences.Editor editor;
+    public final static String TAG = "Testing";
 
     public Expense(String name, final double value, long date, String type, String token, boolean isIncome) {
         this.name = name;
@@ -47,11 +40,24 @@ public class Expense {
 
     }
 
-    public void updateDataBase(){
+    public void updateDataBase(Context context){
+
+        //Instance Database
+        DatabaseReference db;
+
+        //Instance sotorage user
+        SharedPreferences userStorage;
+        SharedPreferences.Editor editor;
 
         userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
         String uid = userStorage.getString("uid","empty data");
-        String currentWallet = userStorage.getString("currentWallet","no existe");
+        String currentWallet = userStorage.getString("currentWallet",null);
+
+        if (currentWallet == null){
+            Log.e(TAG,"currente wallet es igual a null, error en sharedpreferences");
+            return;
+        }
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/"+uid+"/wallet/"+currentWallet);
         //Log.i("Testing","REF: "+ref.toString());
         ref.runTransaction(new Transaction.Handler() {
@@ -68,17 +74,25 @@ public class Expense {
                     return Transaction.success(mutableData);
                 }
 
-                if (isIncome){
-                    ex.budget += value;
-                    mutableData.setValue(ex);
-                    return Transaction.success(mutableData);
+                Date currentDate = new Date();
+                currentDate.getTime();
+
+                if (currentDate.getTime() <= ex.getDate()){
+
+                    if (isIncome){
+                        ex.budget += value;
+                        mutableData.setValue(ex);
+                        return Transaction.success(mutableData);
+                    }else {
+                        ex.budget -= value;
+                        mutableData.setValue(ex);
+                        return Transaction.success(mutableData);
+                    }
+
                 }else {
-                    ex.budget -= value;
-                    mutableData.setValue(ex);
+                    Log.w(TAG,"este expense esta fuera del rango que se definio como maximo");
                     return Transaction.success(mutableData);
                 }
-
-
 
             }
             @Override
@@ -90,6 +104,12 @@ public class Expense {
     }
 
     public void deleteExpense(){
+
+        DatabaseReference db;
+        //Instance sotorage user
+        SharedPreferences userStorage;
+        SharedPreferences.Editor editor;
+
         //userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
         //String uid = userStorage.getString("uid","empty data");
         db = FirebaseDatabase.getInstance().getReference();
@@ -98,7 +118,7 @@ public class Expense {
     }
 
     public void setContext(Context context) {
-        this.context = context;
+        //this.context = context;
     }
 
     public String getName() {

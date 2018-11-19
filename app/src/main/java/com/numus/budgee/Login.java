@@ -66,10 +66,12 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
 
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_login);
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
                 .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
@@ -81,50 +83,52 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
     @Override
     protected void onStart() {
         super.onStart();
-        db = FirebaseDatabase.getInstance().getReference();
+        this.db = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SING_IN){
+        /*if (requestCode == RC_SING_IN){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSigmInResult(result);
-        }
+        }*/
+        GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+        handleSigmInResult(result);
     }
 
     private void handleSigmInResult(GoogleSignInResult result) {
 
         if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
-            firebaseAuthWithGoogle(acct);
+            //firebaseAuthWithGoogle(acct);
 
-            Token token = new Token();
-            Log.i(TAG,"Token value: " + token.generate());
+            /*Token token = new Token();
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE,7);
 
-            Intent intent = new Intent(this, Dashboard.class);
 
-            /* QUERY Example
-            Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate());
+
+            //QUERY Example
+            Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate(),0);
             wallet.setContext(context);
             String uid = mAuth.getCurrentUser().getUid();
-            db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
 
-            QUERY add expense
+            this.db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
+
+
+           // QUERY add expense
             Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
             expense.setContext(context);
-            db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
-            expense.updateDataBase();
-            expense.deleteExpense();
-            //wallet.deleteWallet();
+            this.db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
+            expense.updateDataBase(this.context);
+            expense.deleteExpense();*/
 
-            DELETE WALLET OR EXPENSE
-            wallet.deleteWallet();
-            expense.deleteExpense();
-            */
+            //DELETE WALLET OR EXPENSE
+            //wallet.deleteWallet();
+            //expense.deleteExpense();
+            Intent intent = new Intent(this, Dashboard.class);
             startActivity(intent);
         }
     }
