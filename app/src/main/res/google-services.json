@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "844078859324",
+    "firebase_url": "https://numus-2d4f3.firebaseio.com",
+    "project_id": "numus-2d4f3",
+    "storage_bucket": "numus-2d4f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844078859324:android:ad2958294893e594",
+        "android_client_info": {
+          "package_name": "com.numus.budgee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844078859324-5793treac5pff1q5f3che8nuba5tfhsc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.numus.budgee",
+            "certificate_hash": "0e674c563390aab3a5b794bfc26a535cb5239591"
+          }
+        },
+        {
+          "client_id": "844078859324-068bamj5in9fqus4kkmuqn7bv5sq74ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_7HiKiyUc4kgPKmEunQi5UKSKbOL5q58"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844078859324-rrl5a04el05s6ir55b4pa4gg4jdbkovc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844078859324-5r93cimak0klmu1bfgvc5vr1055iiup9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Numus.itesm.Numus"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
