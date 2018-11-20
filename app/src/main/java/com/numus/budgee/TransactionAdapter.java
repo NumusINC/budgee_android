@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.MusicaViewHolder>{
 
+
     private ArrayList<Transaction> data;
 
     public TransactionAdapter(ArrayList<Transaction> data) {
@@ -36,7 +37,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#091b59"));
                 holder.cat_img.setImageResource(R.drawable.baseline_pets_24);
                 break;
-            case EXTRA:
+            case PAYROLL:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#4e94ff"));
                 holder.cat_img.setImageResource(R.drawable.baseline_account_balance_wallet_24);
                 break;
@@ -72,9 +73,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         public MusicaViewHolder(View itemView) {
             super(itemView);
-            tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            tv_qty = (TextView) itemView.findViewById(R.id.tv_qty);
-            tv_date = (TextView) itemView.findViewById(R.id.tv_date);
+            tv_name = itemView.findViewById(R.id.tv_name);
+            tv_qty = itemView.findViewById(R.id.tv_qty);
+            tv_date = itemView.findViewById(R.id.tv_date);
             cat_lay = itemView.findViewById(R.id.categoryLay);
             cat_img = itemView.findViewById(R.id.img_cat);
         }

@@ -1,5 +1,6 @@
 package com.numus.budgee;
 
+
 public class Transaction {
 
     private String name;
@@ -8,9 +9,15 @@ public class Transaction {
     protected enum Category{
         DEFAULT,
         PET,
-        EXTRA,
+        PAYROLL,
+        HEALTH,
+        CLOTHES,
+        SERVICES,
+        TAXES,
+        FOOD,
         GROCERIES
     }
+
 
     public Category getCategory() {
         return category;
@@ -31,7 +38,7 @@ public class Transaction {
     }
 
     private String date;
-    private int imagen;
+
 
     public Transaction(){
 
@@ -40,7 +47,6 @@ public class Transaction {
     public Transaction(String name, Double quantity, String date, Category category) {
         this.name = name;
         this.quantity = quantity;
-        this.imagen = imagen;
         this.date = date;
         this.category = category;
     }
@@ -61,13 +67,6 @@ public class Transaction {
         this.quantity = quantity;
     }
 
-    public int getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
-    }
 
 
 }

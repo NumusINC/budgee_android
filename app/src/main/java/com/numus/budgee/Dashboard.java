@@ -1,6 +1,10 @@
 package com.numus.budgee;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -20,12 +24,11 @@ import java.util.ArrayList;
 
 public class Dashboard extends AppCompatActivity {
 
-    //TextView mTextMessage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_dashboard);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -35,24 +38,25 @@ public class Dashboard extends AppCompatActivity {
         FloatingActionButton myFab = findViewById(R.id.floatingActionButton);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("***********************");
+                Intent intent = new Intent(getApplicationContext(),AddTransaction.class);
+                startActivity(intent);
             }
         });
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        CustomViewPager viewPager = findViewById(R.id.view_pager);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(swipeAdapter);
+        viewPager.setPagingEnabled(false);
         viewPager.setCurrentItem(0);
-    }
 
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+            CustomViewPager viewPager = findViewById(R.id.view_pager);
             SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
             switch (item.getItemId()) {
                 case R.id.navigation_expenses:

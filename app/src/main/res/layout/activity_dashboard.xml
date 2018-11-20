@@ -41,11 +41,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
-    <android.support.v4.view.ViewPager
+    <com.numus.budgee.CustomViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="265dp"
-        tools:layout_editor_absoluteY="373dp"></android.support.v4.view.ViewPager>
+        tools:layout_editor_absoluteY="373dp"></com.numus.budgee.CustomViewPager>
 
 </android.support.constraint.ConstraintLayout>
