@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import static com.numus.budgee.R.string.default_web_client_id;
 
@@ -42,7 +43,7 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
     private static final String TAG = "Testing";
     public static final String key = "userStorage";
 
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
     private GoogleSignInOptions gso;
     private DatabaseReference db;
 
@@ -99,21 +100,26 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
 
     private void handleSigmInResult(GoogleSignInResult result) {
 
-        if (result.isSuccess()){
+        /*if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
-            //firebaseAuthWithGoogle(acct);
+            firebaseAuthWithGoogle(acct);
 
-            /*Token token = new Token();
+            Token token = new Token();
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE,7);
 
-
+            Log.i(TAG,String.valueOf(mAuth));
 
             //QUERY Example
             Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate(),0);
             wallet.setContext(context);
-            String uid = mAuth.getCurrentUser().getUid();
+            String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            if (uid == null){
+                Log.e(TAG,"Error en uid es null");
+                return;
+            }
+
 
             this.db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
 
@@ -123,14 +129,18 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
             expense.setContext(context);
             this.db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
             expense.updateDataBase(this.context);
-            expense.deleteExpense();*/
+            expense.deleteExpense();
 
             //DELETE WALLET OR EXPENSE
             //wallet.deleteWallet();
             //expense.deleteExpense();
             Intent intent = new Intent(this, Dashboard.class);
             startActivity(intent);
-        }
+        }else{
+            Log.i(TAG,"Error no es success");
+        }*/
+        Intent intent = new Intent(this, Dashboard.class);
+        startActivity(intent);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
