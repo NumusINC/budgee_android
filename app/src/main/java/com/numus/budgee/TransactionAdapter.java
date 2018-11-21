@@ -22,7 +22,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public MusicaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MusicaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_musica, parent, false));
+        return new MusicaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_transaction, parent, false));
     }
 
     @Override
@@ -35,15 +35,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         switch (category){
             case PET:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#091b59"));
-                holder.cat_img.setImageResource(R.drawable.baseline_pets_24);
+                holder.img_cat.setImageResource(R.drawable.baseline_pets_24);
                 break;
             case PAYROLL:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#4e94ff"));
-                holder.cat_img.setImageResource(R.drawable.baseline_account_balance_wallet_24);
+                holder.img_cat.setImageResource(R.drawable.baseline_account_balance_wallet_24);
                 break;
             case GROCERIES:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#ef4c57"));
-                holder.cat_img.setImageResource(R.drawable.baseline_shopping_cart_24);
+                holder.img_cat.setImageResource(R.drawable.baseline_shopping_cart_24);
                 break;
         }
 
@@ -69,7 +69,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextView tv_qty;
         TextView tv_date;
         LinearLayout cat_lay;
-        ImageView cat_img;
+        ImageView img_cat;
 
         public MusicaViewHolder(View itemView) {
             super(itemView);
@@ -77,7 +77,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             tv_qty = itemView.findViewById(R.id.tv_qty);
             tv_date = itemView.findViewById(R.id.tv_date);
             cat_lay = itemView.findViewById(R.id.categoryLay);
-            cat_img = itemView.findViewById(R.id.img_cat);
+            img_cat = itemView.findViewById(R.id.img_cat);
         }
     }
 }
