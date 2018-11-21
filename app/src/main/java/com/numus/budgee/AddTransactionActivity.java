@@ -28,17 +28,16 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     public void addItem(){
+        EditText et_name = findViewById(R.id.name_input);
+        EditText et_qty  = findViewById(R.id.qty_input);
+        Spinner spin_cat = findViewById(R.id.category_input);
 
-        EditText name = findViewById(R.id.name_input);
-        EditText qty  = findViewById(R.id.qty_input);
-        Spinner cat = findViewById(R.id.category_input);
+        String name = et_name.getText().toString();
+        Double qty = Double.valueOf(et_qty.getText().toString());
+        String cat = spin_cat.getSelectedItem().toString();
 
-        String str_name = name.getText().toString();
-        Double dbl_qty = Double.valueOf(qty.getText().toString());
-
-        String cat_input = cat.getSelectedItem().toString();
         Transaction.Category category = Transaction.Category.DEFAULT;
-        switch (cat_input){
+        switch (cat){
             case "Groceries":
                 category = Transaction.Category.GROCERIES;
                 break;
@@ -49,7 +48,7 @@ public class AddTransactionActivity extends AppCompatActivity {
                 category = Transaction.Category.HEALTH;
                 break;
         }
-        dataManager.addTransaction(str_name,dbl_qty,category);
+        dataManager.addTransaction(name,qty,category);
     }
 
 }

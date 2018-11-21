@@ -1,6 +1,5 @@
 package com.numus.budgee;
 
-
 import android.content.Context;
 
 import android.os.Build;
@@ -15,17 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TransactionsFragment extends Fragment{
 
-    private RecyclerView rvMusicas;
+    private RecyclerView rv_transactions;
     private GridLayoutManager glm;
     private TransactionAdapter adapter;
 
-    private Context mContext;
+    private Context context;
     private View view;
 
     DataManager dataManager;
@@ -36,14 +31,14 @@ public class TransactionsFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         view =  inflater.inflate(R.layout.fragment_transactions, container, false);
-        mContext = view.getContext();
-        dataManager = new DataManager(mContext);
-        rvMusicas = (RecyclerView) view.findViewById(R.id.rv_musicas);
+        context = view.getContext();
+        dataManager = new DataManager(context);
+        rv_transactions = (RecyclerView) view.findViewById(R.id.rv_musicas);
 
-        glm = new GridLayoutManager(mContext, 2);
-        rvMusicas.setLayoutManager(glm);
+        glm = new GridLayoutManager(context, 2);
+        rv_transactions.setLayoutManager(glm);
         adapter = new TransactionAdapter(dataManager.getTransactionArray());
-        rvMusicas.setAdapter(adapter);
+        rv_transactions.setAdapter(adapter);
 
         return view;
     }
