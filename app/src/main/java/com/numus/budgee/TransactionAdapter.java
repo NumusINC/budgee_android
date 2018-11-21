@@ -22,7 +22,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public MusicaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MusicaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_musica, parent, false));
+        return new MusicaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_transaction, parent, false));
     }
 
     @Override

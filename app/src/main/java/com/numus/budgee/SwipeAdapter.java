@@ -16,7 +16,7 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = null;
         switch (i){
             case 0:
-                fragment = new ExpensesFragment();
+                fragment = new TransactionsFragment();
                 break;
             case 1:
                 fragment = new SummaryFragment();

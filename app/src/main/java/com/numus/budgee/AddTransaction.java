@@ -21,16 +21,13 @@ import java.util.Calendar;
 
 public class AddTransaction extends AppCompatActivity {
 
-    ExpensesFragment expensesFragment;
-    private static ArrayList<Transaction> data;
+    DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
-        expensesFragment = new ExpensesFragment();
-
-        loadData();
+        dataManager = new DataManager(getApplicationContext());
         FloatingActionButton myFab = findViewById(R.id.add);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,37 +60,7 @@ public class AddTransaction extends AppCompatActivity {
                 category = Transaction.Category.HEALTH;
                 break;
         }
-
-        addTransaction(str_name,dbl_qty,category);
-    }
-
-    public void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("app", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("transactions",null);
-        Type type = new TypeToken<ArrayList<Transaction>>()  {}.getType();
-        data = gson.fromJson(json,type);
-        if (data==null){
-            data = new ArrayList<>();
-        }
-    }
-
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("app", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(data);
-        editor.putString("transactions",json);
-        editor.apply();
-    }
-
-    public void addTransaction(String name, Double qty, Transaction.Category category) {
-        String[] monthName = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug.", "Sep", "Oct", "Nov", "Dec"};
-        Calendar cal = Calendar.getInstance();
-        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-        String date = String.valueOf(dayOfMonth) + " " + monthName[cal.get(Calendar.MONTH)];
-        data.add(new Transaction(name, qty, date, category));
-        saveData();
+        dataManager.addTransaction(str_name,dbl_qty,category);
     }
 
 }
