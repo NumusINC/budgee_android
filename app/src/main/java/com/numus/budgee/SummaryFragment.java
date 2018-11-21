@@ -41,7 +41,7 @@ public class SummaryFragment extends Fragment {
         // CREATING DATASET
         // Y VALUES
         ArrayList<Entry> yvalues = new ArrayList<>();
-        yvalues.add(new Entry(8f, 0));
+        yvalues.add(new Entry(1f, 0));
         yvalues.add(new Entry(15f, 1));
         yvalues.add(new Entry(12f, 2));
         yvalues.add(new Entry(25f, 3));
