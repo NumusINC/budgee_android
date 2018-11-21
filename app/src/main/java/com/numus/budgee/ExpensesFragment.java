@@ -58,6 +58,7 @@ public class ExpensesFragment extends Fragment{
         adapter = new TransactionAdapter(data);
         rvMusicas.setAdapter(adapter);
 
+
         return view;
     }
 
