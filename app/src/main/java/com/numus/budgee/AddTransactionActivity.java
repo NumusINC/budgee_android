@@ -1,9 +1,6 @@
 package com.numus.budgee;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,15 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-
-public class AddTransaction extends AppCompatActivity {
+public class AddTransactionActivity extends AppCompatActivity {
 
     DataManager dataManager;
 
@@ -31,7 +20,7 @@ public class AddTransaction extends AppCompatActivity {
         FloatingActionButton myFab = findViewById(R.id.add);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),Dashboard.class);
+                Intent intent = new Intent(getApplication(),DashboardActivity.class);
                 startActivity(intent);
                 addItem();
             }
