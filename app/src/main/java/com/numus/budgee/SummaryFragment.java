@@ -29,7 +29,6 @@ public class SummaryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +58,7 @@ public class SummaryFragment extends Fragment {
         PieData data = new PieData(xVals, dataSet);
 
         dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
         data.setValueTextSize(16f);
         data.setValueFormatter(new PercentFormatter());
         pieChart.setData(data);

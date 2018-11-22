@@ -9,4 +9,5 @@
     <color name="whitecard">#5D65F9</color>
     <color name="white_nav">#ebffffff</color>
     <color name="green">#49d160</color>
+    <color name="cardView">#414656</color>
 </resources>
