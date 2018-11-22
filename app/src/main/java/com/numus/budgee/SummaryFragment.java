@@ -2,6 +2,7 @@ package com.numus.budgee;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 
 /**
@@ -62,7 +64,7 @@ public class SummaryFragment extends Fragment {
                     valuesP[4] += (arrTest.get(i).getQuantity());
                     break;
                 case PAYROLL:
-                    valuesP[5] += (arrTest.get(i).getQuantity());;
+                    valuesP[5] += (arrTest.get(i).getQuantity());
                     break;
                 case SERVICES:
                     valuesP[6] += (arrTest.get(i).getQuantity());
@@ -91,50 +93,28 @@ public class SummaryFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
         PieChart pieChart = view.findViewById(R.id.piechart);
 
-        dataManager = new DataManager(getContext());
-
         // CREATING DATASET
-        // Y VALUES
-        ArrayList<Transaction> valTest =  dataManager.getTransactionArray();
-        ArrayList<Float> percentageArr = percentage(valTest);
+        dataManager = new DataManager(Objects.requireNonNull(getContext()));
 
-        ArrayList<Entry> yvalues = new ArrayList<>();
+        // Y VALUES & X VALUES
+        ArrayList<Float> percentageArr = percentage(dataManager.getTransactionArray());
+        ArrayList<Entry> yVals = new ArrayList<>();
         ArrayList<String> xVals = new ArrayList<>();
-        /*yvalues.add(new Entry(8f, 0));
-        yvalues.add(new Entry(15f, 1));
-        yvalues.add(new Entry(12f, 2));
-        yvalues.add(new Entry(25f, 3));*/
+
         for (int i = 0; i < percentageArr.size(); i++){
             if (percentageArr.get(i) != 0f){
-                yvalues.add(new Entry(percentageArr.get(i), i));
+                yVals.add(new Entry(percentageArr.get(i), i));
                 xVals.add(categoryStore.get(i));
             }
         }
 
-        PieDataSet dataSet = new PieDataSet(yvalues, "");
-
-        // X VALUES
-
-
-       /* xVals.add("Transport");
-        xVals.add("Food");
-        xVals.add("Social");
-        xVals.add("Miniso");
-        xVals.add("hola");
-        xVals.add("hola");
-        xVals.add("hola");
-        xVals.add("hola");*/
-
-        /*for (int i = 0; i < valTest.size(); i++){
-            xVals.add(valTest.get(i).getName());
-        }*/
-
+        PieDataSet dataSet = new PieDataSet(yVals, "");
         PieData data = new PieData(xVals, dataSet);
 
         dataSet.setColors(ColorTemplate.PASTEL_COLORS);
