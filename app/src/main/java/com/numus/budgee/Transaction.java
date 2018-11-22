@@ -1,11 +1,9 @@
 package com.numus.budgee;
 
-
 public class Transaction {
 
-    private String name;
+    private String name, date, type;
     private Double quantity;
-    private String date;
     private Category category = Category.DEFAULT;
 
     protected enum Category{
@@ -17,14 +15,16 @@ public class Transaction {
         SERVICES,
         TAXES,
         FOOD,
-        GROCERIES
+        GROCERIES,
+        FUN
     }
 
-    public Transaction(String name, Double quantity, String date, Category category) {
+    public Transaction(String name, Double quantity, String date, Category category, String type) {
         this.name = name;
         this.quantity = quantity;
         this.date = date;
         this.category = category;
+        this.type = type;
     }
 
     public Category getCategory() {
@@ -43,4 +43,7 @@ public class Transaction {
         return date;
     }
 
+    public String getType() {
+        return type;
+    }
 }

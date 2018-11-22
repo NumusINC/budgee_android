@@ -10,6 +10,51 @@
     android:background="@color/colorAccent"
 
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+        <Button
+            android:id="@+id/btn_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button"
+            android:elevation="3dp"
+            android:fontFamily="@font/gilroybold"
+            android:onClick="setTransactionType"
+            android:text="Expense"
+            app:layout_constraintEnd_toStartOf="@+id/btn_income"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+        <Space
+            android:layout_width="17dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button"
+            android:elevation="3dp"
+            android:fontFamily="@font/gilroybold"
+            android:onClick="setTransactionType"
+            android:text="Income"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3"
+            tools:layout_editor_absoluteX="199dp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -94,8 +139,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@null"
                 android:ems="10"
-                android:hint="Best Buy"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
+                android:maxLength="7"
                 android:textAlignment="center"
                 android:textColor="@color/white_nav"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,8 +180,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@null"
                 android:ems="10"
-                android:hint="9999.99"
                 android:inputType="numberDecimal"
+                android:maxLength="9"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -170,6 +215,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:entries="@array/categories"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

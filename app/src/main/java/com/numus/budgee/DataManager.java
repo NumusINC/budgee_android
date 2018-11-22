@@ -13,15 +13,16 @@ import java.util.Calendar;
 public class DataManager {
 
     Context context;
+    SharedPreferences sharedPreferences;
     private static ArrayList<Transaction> data;
 
     public DataManager(Context context){
         this.context = context;
+        sharedPreferences = context.getSharedPreferences("budgee",Context.MODE_PRIVATE);
         loadData();
     }
 
     private void loadData(){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("app", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("transactions",null);
         Type type = new TypeToken<ArrayList<Transaction>>()  {}.getType();
@@ -32,7 +33,6 @@ public class DataManager {
     }
 
     private void saveData(){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("app", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(data);
@@ -40,12 +40,12 @@ public class DataManager {
         editor.apply();
     }
 
-    public void addTransaction(String name, Double qty, Transaction.Category category) {
+    public void addTransaction(String name, Double qty, Transaction.Category category, String type) {
         String[] monthName = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug.", "Sep", "Oct", "Nov", "Dec"};
         Calendar cal = Calendar.getInstance();
         int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
         String date = String.valueOf(dayOfMonth) + " " + monthName[cal.get(Calendar.MONTH)];
-        data.add(new Transaction(name, qty, date, category));
+        data.add(0,new Transaction(name, qty, date, category,type));
         saveData();
     }
 
