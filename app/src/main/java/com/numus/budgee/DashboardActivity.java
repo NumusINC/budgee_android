@@ -55,7 +55,6 @@ public class DashboardActivity extends AppCompatActivity {
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(1);
 
-
                     return true;
                 case R.id.navigation_profile:
                     viewPager.setAdapter(swipeAdapter);

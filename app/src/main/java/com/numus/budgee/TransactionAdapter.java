@@ -1,7 +1,9 @@
 package com.numus.budgee;
 
 import android.graphics.Color;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.MusicaViewHolder>{
@@ -34,8 +37,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction.Category category = transaction.getCategory();
         switch (category){
             case PET:
-                holder.cat_lay.setBackgroundColor(Color.parseColor("#091b59"));
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#20CC97"));
                 holder.img_cat.setImageResource(R.drawable.baseline_pets_24);
+                System.out.println("VERGAS");
                 break;
             case PAYROLL:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#4e94ff"));
@@ -45,16 +49,33 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#ef4c57"));
                 holder.img_cat.setImageResource(R.drawable.baseline_shopping_cart_24);
                 break;
+            case TAXES:
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#39374A"));
+                holder.img_cat.setImageResource(R.drawable.baseline_domain_48);
+                break;
+            case FOOD:
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#FFA917"));
+                holder.img_cat.setImageResource(R.drawable.baseline_fastfood_24);
+                break;
+            case FUN:
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#FFD103"));
+                holder.img_cat.setImageResource(R.drawable.baseline_local_play_24);
+                break;
         }
 
-        if(transaction.getQuantity()>0){
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+
+        if(transaction.getType().equals("in")){
             holder.tv_qty.setTextColor(Color.parseColor("#79d388"));
-            holder.tv_qty.setText("+$" + Double.toString(transaction.getQuantity()));
+            holder.tv_qty.setText("+$" + formatter.format(transaction.getQuantity()));
 
         }else{
             holder.tv_qty.setTextColor(Color.parseColor("#e05a5a"));
-            holder.tv_qty.setText("-$" + Double.toString(Math.abs(transaction.getQuantity())));
+            holder.tv_qty.setText("-$" + formatter.format(transaction.getQuantity()));
         }
+
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(holder.tv_qty, 15, 17, 1,
+                TypedValue.COMPLEX_UNIT_DIP);
 
     }
 
