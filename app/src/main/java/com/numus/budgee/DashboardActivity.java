@@ -56,6 +56,7 @@ public class DashboardActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(1);
 
                     return true;
+                    /*
                 case R.id.navigation_profile:
                     viewPager.setAdapter(swipeAdapter);
                     viewPager.setCurrentItem(2);
@@ -66,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(3);
 
                     return true;
+                    */
             }
             return false;
         }
