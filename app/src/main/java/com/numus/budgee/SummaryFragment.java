@@ -25,73 +25,9 @@ import java.util.Objects;
  */
 public class SummaryFragment extends Fragment {
 
-    private String category[] = {"PET","FOOD","TAXES","HEALTH","CLOTHES","PAYROLL","SERVICES","GROCERIES","DEFAULT"};
-    private ArrayList<String> categoryStore;
-    private double sum = 0, sumIn = 0, sumEx = 0;
-
     public SummaryFragment() {
         // Required empty public constructor
     }
-
-    public ArrayList<Float> percentage(ArrayList<Transaction> arrTest){
-        Double valuesP[] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
-        ArrayList<Float> valuesPR = new ArrayList<>();
-        categoryStore = new ArrayList<>();
-
-        for (int i = 0; i < arrTest.size(); i++){
-            sum += arrTest.get(i).getQuantity();
-            if (arrTest.get(i).getType().equals("in")){
-                sumIn += arrTest.get(i).getQuantity();
-            } else if (arrTest.get(i).getType().equals("ex")){
-                sumEx += arrTest.get(i).getQuantity();
-            }
-        }
-
-        for (int i = 0; i < arrTest.size(); i++){
-            switch (arrTest.get(i).getCategory()){
-                case PET:
-                    valuesP[0] += (arrTest.get(i).getQuantity());
-                    break;
-                case FOOD:
-                    valuesP[1] += (arrTest.get(i).getQuantity());
-                    break;
-                case TAXES:
-                    valuesP[2] += (arrTest.get(i).getQuantity());
-                    break;
-                case HEALTH:
-                    valuesP[3] += (arrTest.get(i).getQuantity());
-                    break;
-                case CLOTHES:
-                    valuesP[4] += (arrTest.get(i).getQuantity());
-                    break;
-                case PAYROLL:
-                    valuesP[5] += (arrTest.get(i).getQuantity());
-                    break;
-                case SERVICES:
-                    valuesP[6] += (arrTest.get(i).getQuantity());
-                    break;
-                case GROCERIES:
-                    valuesP[7] += (arrTest.get(i).getQuantity());
-                    break;
-                case DEFAULT:
-                    break;
-            }
-        }
-
-        for (int i = 0; i < valuesP.length; i++) {
-            if (valuesP[i] != 0) {
-                double temp = (valuesP[i] * 100) / sum;
-                valuesPR.add((float) temp);
-                categoryStore.add(category[i]);
-            } else {
-                valuesPR.add(0f);
-                categoryStore.add(category[i]);
-            }
-        }
-
-        return valuesPR;
-    }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -100,19 +36,20 @@ public class SummaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
         TextView total = view.findViewById(R.id.total);
         PieChart pieChart = view.findViewById(R.id.piechart);
+        SummaryPercentage SM = new SummaryPercentage();
 
         // CREATING DATASET
         DataManager dataManager = new DataManager(Objects.requireNonNull(getContext()));
 
         // Y VALUES & X VALUES
-        ArrayList<Float> percentageArr = percentage(dataManager.getTransactionArray());
+        ArrayList<Float> percentageArr = SM.percentage(dataManager.getTransactionArray());
         ArrayList<Entry> yVals = new ArrayList<>();
         ArrayList<String> xVals = new ArrayList<>();
 
         for (int i = 0; i < percentageArr.size(); i++){
             if (percentageArr.get(i) != 0f){
                 yVals.add(new Entry(percentageArr.get(i), i));
-                xVals.add(categoryStore.get(i));
+                xVals.add(SM.getCategoryStore().get(i));
             }
         }
 
@@ -130,7 +67,7 @@ public class SummaryFragment extends Fragment {
         //pieChart.getLegend().setTextColor(Color.WHITE);
         //pieChart.getLegend().setTextSize(12f);
 
-        double budget = sumIn - sumEx;
+        double budget = SM.getSumIn() - SM.getSumEx();
         String t = "$" + budget;
 
         total.setText(t);
