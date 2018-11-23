@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.RequiresApi;
 
 import android.support.v4.app.Fragment;
@@ -40,7 +41,25 @@ public class TransactionsFragment extends Fragment{
         adapter = new TransactionAdapter(dataManager.getTransactionArray());
         rv_transactions.setAdapter(adapter);
 
+        view.findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                dataManager.setEditable(!dataManager.getEditable());
+                rv_transactions.setLayoutManager(glm);
+                adapter = new TransactionAdapter(dataManager.getTransactionArray());
+                rv_transactions.setAdapter(adapter);
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (dataManager.getTransactionArray().size()>0){
+            view.findViewById(R.id.intro_text).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.arrow).setVisibility(View.INVISIBLE);
+        }
     }
 
 }

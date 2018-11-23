@@ -16,13 +16,23 @@ public class DataManager {
     SharedPreferences sharedPreferences;
     private static ArrayList<Transaction> data;
 
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    static Boolean editable = false;
+
     public DataManager(Context context){
         this.context = context;
-        sharedPreferences = context.getSharedPreferences("budgee",Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("test3",Context.MODE_PRIVATE);
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         Gson gson = new Gson();
         String json = sharedPreferences.getString("transactions",null);
         Type type = new TypeToken<ArrayList<Transaction>>()  {}.getType();
@@ -49,8 +59,15 @@ public class DataManager {
         saveData();
     }
 
+
+    public void setTransactionArray(ArrayList<Transaction> transactionArray){
+        data = transactionArray;
+        saveData();
+    }
+
     public ArrayList<Transaction> getTransactionArray(){
         return data;
     }
+
 
 }
