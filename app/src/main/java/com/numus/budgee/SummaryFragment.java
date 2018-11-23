@@ -1,6 +1,9 @@
 package com.numus.budgee;
 
 
+import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,6 +20,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -56,14 +60,23 @@ public class SummaryFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(yVals, "");
         PieData data = new PieData(xVals, dataSet);
 
-        dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        //AssetManager am = getContext().getApplicationContext().getAssets();
+        //Typeface typeface = Typeface.createFromAsset(am,String.format(Locale.US, "font/%s","gilroybold.ttf"));
+
+        //add colors to dataset
+        SM.setColors(xVals);
+        ArrayList<Integer> colors = SM.getColors();
+        dataSet.setColors(colors);
+        data.setValueTypeface(Typeface.createFromAsset(view.getContext().getAssets(),"fonts/gilroybold.ttf" ));
         data.setValueTextSize(16f);
+        data.setValueTextColor(Color.WHITE);
         data.setValueFormatter(new PercentFormatter());
         pieChart.setData(data);
         pieChart.setHoleColor(getResources().getColor(R.color.colorPrimaryDark));
         pieChart.getLegend().setEnabled(false);
         pieChart.setDescription("");
         pieChart.animateXY(1400, 1400);
+
         //pieChart.getLegend().setTextColor(Color.WHITE);
         //pieChart.getLegend().setTextSize(12f);
 

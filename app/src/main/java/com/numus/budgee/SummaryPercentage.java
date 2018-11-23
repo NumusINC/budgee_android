@@ -1,5 +1,7 @@
 package com.numus.budgee;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 
 public class SummaryPercentage {
@@ -7,6 +9,7 @@ public class SummaryPercentage {
     private String category[] = {"PET","FOOD","TAXES","HEALTH","CLOTHES","PAYROLL","SERVICES","GROCERIES","DEFAULT"};
     private ArrayList<String> categoryStore;
     private double sumIn = 0, sumEx = 0;
+    private ArrayList<Integer> colors;
 
     public SummaryPercentage(){
 
@@ -70,6 +73,35 @@ public class SummaryPercentage {
         return valuesPR;
     }
 
+    public void setColors(ArrayList<String> arrColors){
+        colors = new ArrayList<>();
+        for (int i = 0; i < arrColors.size(); i++){
+            switch (arrColors.get(i)){
+                case "PET":
+                    colors.add(Color.rgb(32,204,151)); // Pet
+                    break;
+                case "FOOD":
+                    colors.add(Color.rgb(255,169,23)); // food
+                    break;
+                case "TAXES":
+                    colors.add(Color.rgb(57,55,74)); // taxes
+                    break;
+                case "HEALTH":
+                    colors.add(Color.rgb(181,88,244)); // health
+                    break;
+                case "PAYROLL":
+                    colors.add(Color.rgb(78,148,255)); // payroll
+                    break;
+                case "SERVICES":
+                    colors.add(Color.rgb(206,154,120)); // services
+                    break;
+                case "GROCERIES":
+                    colors.add(Color.rgb(239,76,87)); // groceries
+                    break;
+            }
+        }
+    }
+
     public ArrayList<String> getCategoryStore() {
         return categoryStore;
     }
@@ -80,5 +112,9 @@ public class SummaryPercentage {
 
     public double getSumEx() {
         return sumEx;
+    }
+
+    public ArrayList<Integer> getColors() {
+        return colors;
     }
 }
