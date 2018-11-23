@@ -17,23 +17,20 @@ public class Wallet {
     public String name;
     public String token;
     public double balance;
-    public Context context;
-
-    private DatabaseReference db;
-    SharedPreferences userStorage;
-    SharedPreferences.Editor editor;
+    //public Context context;
 
     public Wallet(){
 
     }
 
-    public Wallet(double budget, double target, long startDate, long endDate,String name, String token) {
+    public Wallet(double budget, double target, long startDate, long endDate, String name, String token, int balance) {
         this.budget = budget;
         this.target = target;
         this.startDate = startDate;
         this.endDate = endDate;
         this.name = name;
         this.token = token;
+
         int days = (int) ((endDate - startDate) / (1000*60*60*24));
         this.balance = budget/days;
 
@@ -46,7 +43,11 @@ public class Wallet {
     }
 
     public void setContext(Context context){
-        this.context = context;
+        DatabaseReference db;
+        SharedPreferences userStorage;
+        SharedPreferences.Editor editor;
+
+        //this.context = context;
         // set values in phone memory
         userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
         editor = userStorage.edit();
@@ -54,7 +55,12 @@ public class Wallet {
         editor.commit();
     }
 
-    public void deleteWallet(){
+    public void deleteWallet(Context context){
+        DatabaseReference db;
+        SharedPreferences userStorage;
+        SharedPreferences.Editor editor;
+        //this.context = context;
+
         userStorage = context.getSharedPreferences("com.numus.budgee.UserStorage", Context.MODE_PRIVATE);
         String uid = userStorage.getString("uid","empty data");
         db = FirebaseDatabase.getInstance().getReference();
@@ -71,6 +77,14 @@ public class Wallet {
 
     public long getDate() {
         return this.endDate;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public long getEndDate() {
+        return endDate;
     }
 
     public String getName() {
@@ -103,5 +117,24 @@ public class Wallet {
 
     public void setTarget(double target) {
         this.target = target;
+    }
+
+    public boolean equals(Wallet obj) {
+
+        if (obj.token == this.token)
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public String toString() {
+        return "{budget: "+this.budget+
+                ", target: "+this.target+
+                ", start: "+this.startDate+
+                ", end: "+this.endDate+
+                ", name: "+this.name+
+                ", token: "+this.token+
+                ", balance: "+this.balance+"}";
     }
 }
