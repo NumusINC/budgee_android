@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -26,6 +27,7 @@ public class SummaryFragment extends Fragment {
 
     private String category[] = {"PET","FOOD","TAXES","HEALTH","CLOTHES","PAYROLL","SERVICES","GROCERIES","DEFAULT"};
     private ArrayList<String> categoryStore;
+    private double sum = 0, sumIn = 0, sumEx = 0;
 
     public SummaryFragment() {
         // Required empty public constructor
@@ -36,9 +38,13 @@ public class SummaryFragment extends Fragment {
         ArrayList<Float> valuesPR = new ArrayList<>();
         categoryStore = new ArrayList<>();
 
-        double sum = 0;
         for (int i = 0; i < arrTest.size(); i++){
             sum += arrTest.get(i).getQuantity();
+            if (arrTest.get(i).getType().equals("in")){
+                sumIn += arrTest.get(i).getQuantity();
+            } else if (arrTest.get(i).getType().equals("ex")){
+                sumEx += arrTest.get(i).getQuantity();
+            }
         }
 
         for (int i = 0; i < arrTest.size(); i++){
@@ -92,6 +98,7 @@ public class SummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
+        TextView total = view.findViewById(R.id.total);
         PieChart pieChart = view.findViewById(R.id.piechart);
 
         // CREATING DATASET
@@ -122,6 +129,11 @@ public class SummaryFragment extends Fragment {
         pieChart.animateXY(1400, 1400);
         //pieChart.getLegend().setTextColor(Color.WHITE);
         //pieChart.getLegend().setTextSize(12f);
+
+        double budget = sumIn - sumEx;
+        String t = "$" + budget;
+
+        total.setText(t);
 
         return view;
     }
