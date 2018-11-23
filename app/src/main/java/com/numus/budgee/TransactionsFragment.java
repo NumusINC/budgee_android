@@ -41,6 +41,14 @@ public class TransactionsFragment extends Fragment{
         adapter = new TransactionAdapter(dataManager.getTransactionArray());
         rv_transactions.setAdapter(adapter);
 
+        view.findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                dataManager.setEditable(!dataManager.getEditable());
+                rv_transactions.setLayoutManager(glm);
+                adapter = new TransactionAdapter(dataManager.getTransactionArray());
+                rv_transactions.setAdapter(adapter);
+            }
+        });
 
         return view;
     }
@@ -53,6 +61,7 @@ public class TransactionsFragment extends Fragment{
             view.findViewById(R.id.arrow).setVisibility(View.INVISIBLE);
         }
     }
+
 }
 
 

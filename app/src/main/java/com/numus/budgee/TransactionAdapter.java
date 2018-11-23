@@ -85,13 +85,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 TypedValue.COMPLEX_UNIT_DIP);
 
 
-        holder.img_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Transaction " + data.get(position).getName() + " removed", Toast.LENGTH_SHORT).show();
-                removeItem(data.get(position));
-            }
-        });
+        if(dataManager.getEditable()){
+            System.out.println("EDITABLE");
+            holder.img_edit.setVisibility(View.VISIBLE);
+            holder.img_edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Transaction " + data.get(position).getName() + " removed", Toast.LENGTH_SHORT).show();
+                    removeItem(data.get(position));
+                }
+            });
+        }
+
+
 
     }
 

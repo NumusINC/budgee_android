@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/myexpenses" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/edit_button"
         android:layout_width="43dp"
         android:layout_height="34dp"
         android:layout_marginBottom="4dp"
@@ -87,6 +87,7 @@
         android:drawableLeft="@drawable/baseline_edit_24"
         android:drawablePadding="3dp"
         android:fontFamily="@font/gilroybold"
+        android:onClick="edit"
         android:paddingLeft="10dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/rv_musicas"

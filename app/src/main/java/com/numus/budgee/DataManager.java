@@ -16,6 +16,16 @@ public class DataManager {
     SharedPreferences sharedPreferences;
     private static ArrayList<Transaction> data;
 
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    static Boolean editable = false;
+
     public DataManager(Context context){
         this.context = context;
         sharedPreferences = context.getSharedPreferences("test3",Context.MODE_PRIVATE);
@@ -58,5 +68,6 @@ public class DataManager {
     public ArrayList<Transaction> getTransactionArray(){
         return data;
     }
+
 
 }
