@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "844078859324-df8i9t5cao1do6s6lqgtpqh8lmfp4fdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.numus.budgee",
+            "certificate_hash": "17c8e121e78aff54e165c962e75d3db3f4ade08e"
+          }
+        },
+        {
           "client_id": "844078859324-068bamj5in9fqus4kkmuqn7bv5sq74ij.apps.googleusercontent.com",
           "client_type": 3
         }

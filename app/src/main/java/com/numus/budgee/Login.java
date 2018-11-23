@@ -95,16 +95,20 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
             handleSigmInResult(result);
         }*/
         GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-        handleSigmInResult(result);
+        try {
+            handleSigmInResult(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void handleSigmInResult(GoogleSignInResult result) {
+    private void handleSigmInResult(GoogleSignInResult result) throws InterruptedException {
 
         if (result.isSuccess()){
             GoogleSignInAccount acct = result.getSignInAccount();
-            //firebaseAuthWithGoogle(acct);
+            firebaseAuthWithGoogle(acct);
 
-            Token token = new Token();
+            /*Token token = new Token();
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE,7);
@@ -113,25 +117,25 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
 
             //QUERY Example
             Wallet wallet = new Wallet(2000.00,100, date.getTime(), cal.getTime().getTime(),"wallet1",token.generate(),0);
-            wallet.setContext(context);
-
+            wallet.setContext(context);*/
             // force uid to don't be null object
-            String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            //Thread.sleep(3000);
+            //String uid = mAuth.getCurrentUser().getUid();
 
-            this.db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
+            //this.db.child("Users/"+uid+"/wallet").child(wallet.getToken()).setValue(wallet);
 
 
            // QUERY add expense
-            Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
+            /*Expense expense = new Expense("comida",200, date.getTime(),"food",token.generate(),false);
             expense.setContext(context);
             this.db.child("Users/"+uid+"/expense").child(expense.getToken()).setValue(expense);
             expense.updateDataBase(this.context);
-            expense.deleteExpense();
+            expense.deleteExpense();*/
 
             //DELETE WALLET OR EXPENSE
             //wallet.deleteWallet();
             //expense.deleteExpense();
-            Intent intent = new Intent(this, Dashboard.class);
+            Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
         }else{
             Log.i(TAG,"Error no es success");
@@ -142,6 +146,9 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
+
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -154,8 +161,8 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
                             User dataUser = new User(user.getDisplayName(), user.getEmail());
                             db.child("Users").child(user.getUid() + "/info").setValue(dataUser);
                             //save data in storage file and commit
-                            editor.putString("uid",user.getUid());
-                            editor.commit();
+                            //editor.putString("uid",user.getUid());
+                            //editor.commit();
 
                         } else {
                             // If sign in fails, display a message to the user.
