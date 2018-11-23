@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#50566a</color>
-    <color name="colorPrimaryDark">#50566a</color>
-    <color name="colorAccent">#50566a</color>
+    <color name="colorPrimaryDark">#21242c</color>
+    <color name="colorAccent">#21242c</color>
     <color name="colorDiscount">#f85050</color>
     <color name="colorNavBar">#101011</color>
     <color name="white">#c4ffffff</color>
@@ -11,4 +11,6 @@
     <color name="green">#49d160</color>
     <color name="cardView">#414656</color>
     <color name="ne">#4c5264</color>
+    <color name="tabColor">#2b2f3a</color>
+    <color name="bgColor">#2b2f3a</color>
 </resources>

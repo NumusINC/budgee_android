@@ -4,16 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/bgColor"
     tools:context=".TransactionsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="47dp"
+        android:background="@color/colorAccent"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/rv_musicas"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/edit_button"
+                android:layout_width="44dp"
+                android:layout_height="34dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/rounded_button_simple"
+                android:drawableLeft="@drawable/baseline_edit_24"
+                android:drawablePadding="3dp"
+                android:fontFamily="@font/gilroybold"
+                android:onClick="edit"
+                android:paddingLeft="10dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toTopOf="@+id/rv_musicas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/myexpenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/gilroybold"
+                android:text="My Transactions"
+                android:textColor="@android:color/background_light"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/arrow"
@@ -48,19 +89,6 @@
         app:layout_constraintTop_toTopOf="@+id/rv_musicas"
         app:layout_constraintVertical_bias="0.583" />
 
-    <TextView
-        android:id="@+id/myexpenses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/gilroybold"
-        android:text="My Transactions"
-        android:textColor="@android:color/background_light"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_musicas"
         android:layout_width="match_parent"
@@ -68,30 +96,12 @@
         android:layout_marginBottom="60dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorAccent"
+        android:layout_marginTop="8dp"
+        android:background="@color/bgColor"
         android:requiresFadingEdge="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myexpenses" />
-
-    <Button
-        android:id="@+id/edit_button"
-        android:layout_width="43dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/rounded_button_simple"
-        android:drawableLeft="@drawable/baseline_edit_24"
-        android:drawablePadding="3dp"
-        android:fontFamily="@font/gilroybold"
-        android:onClick="edit"
-        android:paddingLeft="10dp"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/rv_musicas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
