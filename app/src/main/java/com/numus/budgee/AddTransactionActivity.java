@@ -26,27 +26,24 @@ public class AddTransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
         dataManager = new DataManager(getApplicationContext());
-        FloatingActionButton myFab = findViewById(R.id.add);
-        myFab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                addItem();
-                if(flag_name && flag_qty){
-                    if (flag_type){
-                        Intent intent = new Intent(getApplication(),DashboardActivity.class);
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Missed transaction type!",Toast.LENGTH_SHORT).show();
-                    }
-                }
+    }
+
+    public void press(View view){
+        addItem();
+        if(flag_name && flag_qty){
+            if (flag_type){
+                Intent intent = new Intent(getApplication(),DashboardActivity.class);
+                startActivity(intent);
+            }else {
+                Toast.makeText(getApplicationContext(), "Missed transaction type!",Toast.LENGTH_SHORT).show();
             }
-        });
+        }
     }
 
     public void addItem(){
         EditText et_name = findViewById(R.id.name_input);
         EditText et_qty  = findViewById(R.id.qty_input);
         Spinner spin_cat = findViewById(R.id.category_input);
-
 
         String name = "";
         Double qty = 0.0;
