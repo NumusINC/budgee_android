@@ -4,23 +4,18 @@ package com.numus.budgee;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -29,7 +24,6 @@ import java.util.Objects;
  */
 public class SummaryFragment extends Fragment {
 
-    private DataManager dataManager;
     private String category[] = {"PET","FOOD","TAXES","HEALTH","CLOTHES","PAYROLL","SERVICES","GROCERIES","DEFAULT"};
     private ArrayList<String> categoryStore;
 
@@ -101,7 +95,7 @@ public class SummaryFragment extends Fragment {
         PieChart pieChart = view.findViewById(R.id.piechart);
 
         // CREATING DATASET
-        dataManager = new DataManager(Objects.requireNonNull(getContext()));
+        DataManager dataManager = new DataManager(Objects.requireNonNull(getContext()));
 
         // Y VALUES & X VALUES
         ArrayList<Float> percentageArr = percentage(dataManager.getTransactionArray());
@@ -126,6 +120,8 @@ public class SummaryFragment extends Fragment {
         pieChart.getLegend().setEnabled(false);
         pieChart.setDescription("");
         pieChart.animateXY(1400, 1400);
+        //pieChart.getLegend().setTextColor(Color.WHITE);
+        //pieChart.getLegend().setTextSize(12f);
 
         return view;
     }
