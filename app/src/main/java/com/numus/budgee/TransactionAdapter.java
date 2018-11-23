@@ -70,7 +70,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#FFD103"));
                 holder.img_cat.setImageResource(R.drawable.baseline_local_play_24);
                 break;
+            case SERVICES:
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#CE9A78"));
+                holder.img_cat.setImageResource(R.drawable.baseline_local_gas_station_24);
+                break;
+            case HEALTH:
+                holder.cat_lay.setBackgroundColor(Color.parseColor("#B558F4"));
+                holder.img_cat.setImageResource(R.drawable.baseline_local_hospital_24);
+                break;
         }
+
+        // MISSING: SERVICES CE9A78, HEALTH
 
         if(transaction.getType().equals("in")){
             holder.tv_qty.setTextColor(Color.parseColor("#79d388"));
