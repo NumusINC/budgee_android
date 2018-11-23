@@ -43,6 +43,39 @@ public class EditTransactionActivity extends AppCompatActivity {
 
         Transaction transaction = dataManager.getTransactionArray().get(position);
 
+        LinearLayout cl = findViewById(R.id.editLay);
+
+        Transaction.Category category = transaction.getCategory();
+
+        switch (category){
+            case PET:
+                cl.setBackgroundColor(Color.parseColor("#20CC97"));
+                break;
+            case PAYROLL:
+                cl.setBackgroundColor(Color.parseColor("#4e94ff"));
+                break;
+            case GROCERIES:
+                cl.setBackgroundColor(Color.parseColor("#ef4c57"));
+                break;
+            case TAXES:
+                cl.setBackgroundColor(Color.parseColor("#39374A"));
+                break;
+            case FOOD:
+                cl.setBackgroundColor(Color.parseColor("#FFA917"));
+                break;
+            case FUN:
+                cl.setBackgroundColor(Color.parseColor("#FFD103"));
+                break;
+            case SERVICES:
+                cl.setBackgroundColor(Color.parseColor("#CE9A78"));
+                break;
+            case HEALTH:
+                cl.setBackgroundColor(Color.parseColor("#B558F4"));
+                break;
+        }
+
+
+
         et_name.setText(transaction.getName());
         et_qty.setText(transaction.getQuantity().toString());
     }
@@ -109,34 +142,8 @@ public class EditTransactionActivity extends AppCompatActivity {
                 break;
         }
 
-        LinearLayout cl = findViewById(R.id.categoryLay);
 
-        switch (category){
-            case PET:
-                cl.setBackgroundColor(Color.parseColor("#20CC97"));
-                break;
-            case PAYROLL:
-                cl.setBackgroundColor(Color.parseColor("#4e94ff"));
-                break;
-            case GROCERIES:
-                cl.setBackgroundColor(Color.parseColor("#ef4c57"));
-                break;
-            case TAXES:
-                cl.setBackgroundColor(Color.parseColor("#39374A"));
-                break;
-            case FOOD:
-                cl.setBackgroundColor(Color.parseColor("#FFA917"));
-                break;
-            case FUN:
-                cl.setBackgroundColor(Color.parseColor("#FFD103"));
-                break;
-            case SERVICES:
-                cl.setBackgroundColor(Color.parseColor("#CE9A78"));
-                break;
-            case HEALTH:
-                cl.setBackgroundColor(Color.parseColor("#B558F4"));
-                break;
-        }
+
         if (flag_name&&flag_qty&&flag_type){
             dataManager.editTransaction(name, qty, category, transactionType,position);
         }
