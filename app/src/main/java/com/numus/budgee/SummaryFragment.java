@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -125,6 +126,7 @@ public class SummaryFragment extends Fragment {
         pieChart.getLegend().setEnabled(false);
         pieChart.setDescription("");
         pieChart.animateXY(1400, 1400);
+
         return view;
     }
 

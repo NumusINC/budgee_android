@@ -1,6 +1,8 @@
 package com.numus.budgee;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -10,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -18,6 +22,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
 
     private ArrayList<Transaction> data;
+    Context context;
+    DataManager dataManager;
 
     public TransactionAdapter(ArrayList<Transaction> data) {
         this.data = data;
@@ -25,21 +31,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public MusicaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        context = parent.getContext();
         return new MusicaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_transaction, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(MusicaViewHolder holder, int position) {
+    public void onBindViewHolder(MusicaViewHolder holder, final int position) {
         Transaction transaction = data.get(position);
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
         holder.tv_name.setText(transaction.getName());
         holder.tv_date.setText(transaction.getDate());
+
+        dataManager = new DataManager(context);
 
         Transaction.Category category = transaction.getCategory();
         switch (category){
             case PET:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#20CC97"));
                 holder.img_cat.setImageResource(R.drawable.baseline_pets_24);
-                System.out.println("VERGAS");
                 break;
             case PAYROLL:
                 holder.cat_lay.setBackgroundColor(Color.parseColor("#4e94ff"));
@@ -63,8 +72,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 break;
         }
 
-        DecimalFormat formatter = new DecimalFormat("#,###.00");
-
         if(transaction.getType().equals("in")){
             holder.tv_qty.setTextColor(Color.parseColor("#79d388"));
             holder.tv_qty.setText("+$" + formatter.format(transaction.getQuantity()));
@@ -77,6 +84,29 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(holder.tv_qty, 15, 17, 1,
                 TypedValue.COMPLEX_UNIT_DIP);
 
+
+        if(dataManager.getEditable()){
+            System.out.println("EDITABLE");
+            holder.img_edit.setVisibility(View.VISIBLE);
+            holder.img_edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Transaction " + data.get(position).getName() + " removed", Toast.LENGTH_SHORT).show();
+                    removeItem(data.get(position));
+                }
+            });
+        }
+
+
+
+    }
+
+    private void removeItem(Transaction infoData) {
+        int currPosition = data.indexOf(infoData);
+        notifyItemRemoved(currPosition);
+        notifyDataSetChanged();
+        data.remove(currPosition);
+        dataManager.setTransactionArray(data);
     }
 
     @Override
@@ -90,7 +120,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextView tv_qty;
         TextView tv_date;
         LinearLayout cat_lay;
-        ImageView img_cat;
+        ImageView img_cat, img_edit;
 
         public MusicaViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +129,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             tv_date = itemView.findViewById(R.id.tv_date);
             cat_lay = itemView.findViewById(R.id.categoryLay);
             img_cat = itemView.findViewById(R.id.img_cat);
+            img_edit = itemView.findViewById(R.id.edit);
         }
     }
 }
