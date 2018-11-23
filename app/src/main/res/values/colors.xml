@@ -13,4 +13,5 @@
     <color name="ne">#4c5264</color>
     <color name="tabColor">#2b2f3a</color>
     <color name="bgColor">#2b2f3a</color>
+    <color name="cvbutton">#898D9A</color>
 </resources>

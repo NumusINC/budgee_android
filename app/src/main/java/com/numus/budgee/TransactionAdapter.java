@@ -1,8 +1,8 @@
 package com.numus.budgee;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -95,8 +94,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 TypedValue.COMPLEX_UNIT_DIP);
 
 
-        if(dataManager.getEditable()){
-            System.out.println("EDITABLE");
+        if(dataManager.isDeletable()){
             holder.img_edit.setVisibility(View.VISIBLE);
             holder.img_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,6 +105,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             });
         }
 
+        if(dataManager.getEditable()){
+            holder.img_rem.setVisibility(View.VISIBLE);
+            holder.img_rem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,EditTransactionActivity.class);
+                    intent.putExtra("position",data.indexOf(data.get(position)));
+                    context.startActivity(intent);
+                }
+            });
+        }
 
 
     }
@@ -130,7 +139,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextView tv_qty;
         TextView tv_date;
         LinearLayout cat_lay;
-        ImageView img_cat, img_edit;
+        ImageView img_cat, img_edit, img_rem;
 
         public MusicaViewHolder(View itemView) {
             super(itemView);
@@ -140,6 +149,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             cat_lay = itemView.findViewById(R.id.categoryLay);
             img_cat = itemView.findViewById(R.id.img_cat);
             img_edit = itemView.findViewById(R.id.edit);
+            img_rem = itemView.findViewById(R.id.trashcan);
         }
     }
 }
