@@ -6,9 +6,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddTransactionActivity extends AppCompatActivity {
 
@@ -16,7 +19,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     String transactionType;
     Boolean flag_name = false;
     Boolean flag_qty = false;
-
+    Boolean flag_type = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +31,12 @@ public class AddTransactionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 addItem();
                 if(flag_name && flag_qty){
-                    Intent intent = new Intent(getApplication(),DashboardActivity.class);
-                    startActivity(intent);
-
+                    if (flag_type){
+                        Intent intent = new Intent(getApplication(),DashboardActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Missed transaction type!",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -40,6 +46,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         EditText et_name = findViewById(R.id.name_input);
         EditText et_qty  = findViewById(R.id.qty_input);
         Spinner spin_cat = findViewById(R.id.category_input);
+
 
         String name = "";
         Double qty = 0.0;
@@ -86,7 +93,9 @@ public class AddTransactionActivity extends AppCompatActivity {
                 category = Transaction.Category.PET;
                 break;
         }
-        if (flag_name&&flag_qty) dataManager.addTransaction(name, qty, category, transactionType);
+        if (flag_name&&flag_qty&&flag_type){
+            dataManager.addTransaction(name, qty, category, transactionType);
+        }
     }
 
     public void setTransactionType(View view){
@@ -96,11 +105,13 @@ public class AddTransactionActivity extends AppCompatActivity {
                 transactionType = "ex";
                 findViewById(R.id.btn_expense).setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_button_selected));
                 findViewById(R.id.btn_income).setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_button));
+                flag_type = true;
                 break;
             case R.id.btn_income:
                 transactionType = "in";
                 findViewById(R.id.btn_expense).setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_button));
                 findViewById(R.id.btn_income).setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_button_selected));
+                flag_type = true;
                 break;
         }
     }

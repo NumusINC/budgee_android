@@ -18,11 +18,11 @@ public class DataManager {
 
     public DataManager(Context context){
         this.context = context;
-        sharedPreferences = context.getSharedPreferences("budgee",Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("test3",Context.MODE_PRIVATE);
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         Gson gson = new Gson();
         String json = sharedPreferences.getString("transactions",null);
         Type type = new TypeToken<ArrayList<Transaction>>()  {}.getType();
@@ -46,6 +46,12 @@ public class DataManager {
         int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
         String date = String.valueOf(dayOfMonth) + " " + monthName[cal.get(Calendar.MONTH)];
         data.add(0,new Transaction(name, qty, date, category,type));
+        saveData();
+    }
+
+
+    public void setTransactionArray(ArrayList<Transaction> transactionArray){
+        data = transactionArray;
         saveData();
     }
 
