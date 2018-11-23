@@ -76,7 +76,7 @@ public class DataManager {
 
     public void editTransaction(String name, Double qty, Transaction.Category category, String type,int position){
         Transaction transaction = data.get(position);
-        data.set(0,new Transaction(name, qty, transaction.getDate(), category,type));
+        data.set(position,new Transaction(name, qty, transaction.getDate(), category,type));
         saveData();
     }
 
