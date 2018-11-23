@@ -33,7 +33,6 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         fragment.setArguments(bundle);
         return fragment;
     }
-
     @Override
     public int getCount() {
         return 4;
