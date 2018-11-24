@@ -16,15 +16,25 @@ public class DataManager {
     SharedPreferences sharedPreferences;
     private static ArrayList<Transaction> data;
 
+    static Boolean deletable = false;
+    static Boolean editable = false;
+
     public Boolean getEditable() {
         return editable;
     }
 
     public void setEditable(Boolean editable) {
-        this.editable = editable;
+        DataManager.editable = editable;
     }
 
-    static Boolean editable = false;
+
+    public Boolean isDeletable() {
+        return deletable;
+    }
+
+    public void setDeletable(Boolean deletable) {
+        this.deletable = deletable;
+    }
 
     public DataManager(Context context){
         this.context = context;
@@ -59,15 +69,19 @@ public class DataManager {
         saveData();
     }
 
-
     public void setTransactionArray(ArrayList<Transaction> transactionArray){
         data = transactionArray;
+        saveData();
+    }
+
+    public void editTransaction(String name, Double qty, Transaction.Category category, String type,int position){
+        Transaction transaction = data.get(position);
+        data.set(position,new Transaction(name, qty, transaction.getDate(), category,type));
         saveData();
     }
 
     public ArrayList<Transaction> getTransactionArray(){
         return data;
     }
-
 
 }

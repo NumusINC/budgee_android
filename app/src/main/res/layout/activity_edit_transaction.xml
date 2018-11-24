@@ -11,14 +11,36 @@
 
 
     <LinearLayout
+        android:id="@+id/editLay"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/title_name"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/green"
-        app:layout_constraintVertical_bias="0.0"></LinearLayout>
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/gilroybold"
+                android:text="Edit transaction"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -68,9 +90,10 @@
 
 
     <TextView
-        android:id="@+id/title_name"
+        android:id="@+id/title_name_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/gilroybold"
         android:text="Name:"
         android:textColor="@android:color/background_light"
@@ -78,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="59dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editLay" />
 
     <TextView
         android:id="@+id/title_name2"
@@ -121,14 +144,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_name">
+        app:layout_constraintTop_toBottomOf="@+id/title_name_edit">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/name_input"
+                android:id="@+id/name_get"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -169,7 +192,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/qty_input"
+                android:id="@+id/qty_get"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -229,7 +252,8 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button_add"
         android:fontFamily="@font/gilroybold"
-        android:text="Add"
+        android:onClick="press"
+        android:text="Edit"
         android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
