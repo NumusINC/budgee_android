@@ -51,7 +51,6 @@ public class TransactionsFragment extends Fragment{
             }
         });
 
-
         view.findViewById(R.id.erase_button).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 dataManager.setDeletable(!dataManager.isDeletable());
