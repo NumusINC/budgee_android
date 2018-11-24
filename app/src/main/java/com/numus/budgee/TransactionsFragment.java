@@ -42,9 +42,9 @@ public class TransactionsFragment extends Fragment{
         adapter = new TransactionAdapter(dataManager.getTransactionArray());
         rv_transactions.setAdapter(adapter);
 
-        view.findViewById(R.id.edit_button).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.editable_button).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                dataManager.setEditable(!dataManager.isDeletable());
+                dataManager.setEditable(!dataManager.getEditable());
                 rv_transactions.setLayoutManager(glm);
                 adapter = new TransactionAdapter(dataManager.getTransactionArray());
                 rv_transactions.setAdapter(adapter);
@@ -52,9 +52,9 @@ public class TransactionsFragment extends Fragment{
         });
 
 
-        view.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.erase_button).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                dataManager.setDeletable(!dataManager.getEditable());
+                dataManager.setDeletable(!dataManager.isDeletable());
                 rv_transactions.setLayoutManager(glm);
                 adapter = new TransactionAdapter(dataManager.getTransactionArray());
                 rv_transactions.setAdapter(adapter);

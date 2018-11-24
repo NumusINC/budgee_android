@@ -79,7 +79,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 break;
         }
 
-        // MISSING: SERVICES CE9A78, HEALTH
 
         if(transaction.getType().equals("in")){
             holder.tv_qty.setTextColor(Color.parseColor("#79d388"));

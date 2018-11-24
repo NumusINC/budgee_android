@@ -24,7 +24,7 @@ public class DataManager {
     }
 
     public void setEditable(Boolean editable) {
-        DataManager.editable = editable;
+        this.editable = editable;
     }
 
 
