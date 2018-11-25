@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -59,9 +60,7 @@ public class SummaryFragment extends Fragment {
 
         PieDataSet dataSet = new PieDataSet(yVals, "");
         PieData data = new PieData(xVals, dataSet);
-
-        //AssetManager am = getContext().getApplicationContext().getAssets();
-        //Typeface typeface = Typeface.createFromAsset(am,String.format(Locale.US, "font/%s","gilroybold.ttf"));
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
 
         //add colors to dataset
         SM.setColors(xVals);
@@ -81,7 +80,7 @@ public class SummaryFragment extends Fragment {
         //pieChart.getLegend().setTextSize(12f);
 
         double budget = SM.getSumIn() - SM.getSumEx();
-        String t = "$" + budget;
+        String t = "$" + formatter.format(budget);
 
         total.setText(t);
 

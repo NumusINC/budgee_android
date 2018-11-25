@@ -6,6 +6,7 @@
     android:layout_height="100dp"
     android:layout_margin="12dp"
     android:orientation="horizontal"
+    android:background="@color/colorAccent"
     app:cardBackgroundColor="@color/whitecard"
 
     app:cardCornerRadius="10dp"
