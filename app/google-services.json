@@ -31,6 +31,30 @@
           }
         },
         {
+          "client_id": "844078859324-ngfccfkpdlvqfhefkbcdtj26pv7285m5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.numus.budgee",
+            "certificate_hash": "c750b29a9870563e8c4a82b77f38c075dc0cbac2"
+          }
+        },
+        {
+          "client_id": "844078859324-060l1ntdou0r2i3454vbckvir83u97i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.numus.budgee",
+            "certificate_hash": "88e90d9f50411ae96b5f1634039971bef6dd94d0"
+          }
+        },
+        {
+          "client_id": "844078859324-rkv8ijnr3m72cga7ejivomafsr5h3vjr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.numus.budgee",
+            "certificate_hash": "6d698e5b5f0d4b0343d4cb1d0f7306d1e0344ddb"
+          }
+        },
+        {
           "client_id": "844078859324-068bamj5in9fqus4kkmuqn7bv5sq74ij.apps.googleusercontent.com",
           "client_type": 3
         }
