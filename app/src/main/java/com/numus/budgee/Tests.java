@@ -13,8 +13,7 @@ public class Tests {
     public String toString() {
         String tests = "\n" +
                 "Test Not Same Size: " + testSizeN() + "\n" +
-                "Test Same Size: " + testSize() + "\n" +
-                "Test Fail Transaction: " + testTransactionsN() + "\n";
+                "Test Same Size: " + testSize() + "\n";
         return tests;
     }
 
@@ -62,9 +61,4 @@ public class Tests {
 
         return 0;
     }
-
-    public int testTransactionsN(){
-        return 0;
-    }
-
 }
