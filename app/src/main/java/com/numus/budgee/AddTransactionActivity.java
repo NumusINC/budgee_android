@@ -21,6 +21,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     Boolean flag_name = false;
     Boolean flag_qty = false;
     Boolean flag_type = false;
+    Boolean flag_add = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         addItem();
         if(flag_name && flag_qty){
             if (flag_type){
+                flag_add = true;
                 Intent intent = new Intent(getApplication(),DashboardActivity.class);
                 startActivity(intent);
             }else {
