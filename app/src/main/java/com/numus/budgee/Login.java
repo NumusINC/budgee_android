@@ -147,11 +147,13 @@ public class Login extends AppCompatActivity implements ConnectionCallbacks, OnC
             //DELETE WALLET OR EXPENSE
             //wallet.deleteWallet();
             //expense.deleteExpense();
-            Intent intent = new Intent(this, DashboardActivity.class);
-            startActivity(intent);
+           /* Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);*/
         }else{
             Log.i(TAG,"Error no es success");
         }
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
