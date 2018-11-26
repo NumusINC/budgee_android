@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,10 @@ public class SummaryFragment extends Fragment {
         PieChart pieChart = view.findViewById(R.id.piechart);
         SummaryPercentage SM = new SummaryPercentage();
 
+        // Test
+        Tests test = new Tests();
+        Log.d("test", test.toString());
+
         // CREATING DATASET
         DataManager dataManager = new DataManager(Objects.requireNonNull(getContext()));
 
@@ -56,6 +61,10 @@ public class SummaryFragment extends Fragment {
                 yVals.add(new Entry(percentageArr.get(i), i));
                 xVals.add(SM.getCategoryStore().get(i));
             }
+        }
+
+        if (SM.sameSize(yVals,xVals) != 1){
+            return view;
         }
 
         PieDataSet dataSet = new PieDataSet(yVals, "");

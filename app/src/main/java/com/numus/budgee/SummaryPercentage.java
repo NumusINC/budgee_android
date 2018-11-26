@@ -2,6 +2,8 @@ package com.numus.budgee;
 
 import android.graphics.Color;
 
+import com.github.mikephil.charting.data.Entry;
+
 import java.util.ArrayList;
 
 public class SummaryPercentage {
@@ -101,6 +103,13 @@ public class SummaryPercentage {
                     break;
             }
         }
+    }
+
+    public int sameSize(ArrayList<Entry> yVal, ArrayList<String> xVal){
+        if (yVal.size() == xVal.size()){
+            return 1;
+        }
+        return 0;
     }
 
     public ArrayList<String> getCategoryStore() {
