@@ -55,7 +55,7 @@ public class Tests {
         testSizeY.add("SERVICES");
         testSizeY.add("TAXES");
 
-        if (SP.sameSize(testSizeX,testSizeY) == 0){
+        if (SP.sameSize(testSizeX,testSizeY) == 1){
             return 1;
         }
 
