@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     Boolean flag_name = false;
     Boolean flag_qty = false;
     Boolean flag_type = false;
+    Boolean flag_add = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         addItem();
         if(flag_name && flag_qty){
             if (flag_type){
+                flag_add = true;
                 Intent intent = new Intent(getApplication(),DashboardActivity.class);
                 startActivity(intent);
             }else {
@@ -88,6 +91,9 @@ public class AddTransactionActivity extends AppCompatActivity {
                 break;
             case "Pet":
                 category = Transaction.Category.PET;
+                break;
+            case "Services":
+                category = Transaction.Category.SERVICES;
                 break;
         }
         if (flag_name&&flag_qty&&flag_type){

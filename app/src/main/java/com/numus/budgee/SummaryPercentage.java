@@ -2,11 +2,13 @@ package com.numus.budgee;
 
 import android.graphics.Color;
 
+import com.github.mikephil.charting.data.Entry;
+
 import java.util.ArrayList;
 
 public class SummaryPercentage {
 
-    private String category[] = {"PET","FOOD","TAXES","HEALTH","CLOTHES","PAYROLL","SERVICES","GROCERIES","DEFAULT"};
+    private String category[] = {"PET","FOOD","TAXES","HEALTH","FUN","PAYROLL","SERVICES","GROCERIES"};
     private ArrayList<String> categoryStore;
     private double sumIn = 0, sumEx = 0;
     private ArrayList<Integer> colors;
@@ -42,7 +44,7 @@ public class SummaryPercentage {
                 case HEALTH:
                     valuesP[3] += (arrTest.get(i).getQuantity());
                     break;
-                case CLOTHES:
+                case FUN:
                     valuesP[4] += (arrTest.get(i).getQuantity());
                     break;
                 case PAYROLL:
@@ -53,8 +55,6 @@ public class SummaryPercentage {
                     break;
                 case GROCERIES:
                     valuesP[7] += (arrTest.get(i).getQuantity());
-                    break;
-                case DEFAULT:
                     break;
             }
         }
@@ -98,8 +98,18 @@ public class SummaryPercentage {
                 case "GROCERIES":
                     colors.add(Color.rgb(239,76,87)); // groceries
                     break;
+                case "FUN":
+                    colors.add(Color.rgb(255,209,3)); // fun
+                    break;
             }
         }
+    }
+
+    public int sameSize(ArrayList<Entry> yVal, ArrayList<String> xVal){
+        if (yVal.size() == xVal.size()){
+            return 1;
+        }
+        return 0;
     }
 
     public ArrayList<String> getCategoryStore() {
